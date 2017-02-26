@@ -1,0 +1,10 @@
+hello: "world"
+mongo:
+  host: 0.0.0.0
+  port: 27017
+kafka:
+  host: 0.0.0.0
+  port: 9091
+security:
+  disabled: "false"
+  jwt.signedKey: mykey

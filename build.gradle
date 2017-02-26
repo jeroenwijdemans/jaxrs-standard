@@ -1,0 +1,70 @@
+group 'com.wijdemans'
+version '1.0.0'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+apply plugin: "java"
+apply plugin: "groovy"
+apply plugin: "maven"
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.verbose = false
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+ext {
+    versions = [:]
+    libraries = [:]
+}
+
+versions += [
+        slf4j : "1.7.18",
+        jackson  : "2.8.4",
+        jackson  : "2.8.4",
+]
+
+libraries.logging = [
+        "org.slf4j:log4j-over-slf4j:$versions.slf4j",
+        "org.slf4j:jcl-over-slf4j:$versions.slf4j",
+]
+
+dependencies {
+    compile libraries.logging
+
+    compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    compile 'javax.inject:javax.inject:1'
+    compile 'javax.annotation:javax.annotation-api:1.2'
+    compile 'org.glassfish.hk2:hk2-api:2.5.0-b34'
+
+    compile group: 'org.bitbucket.b_c', name: 'jose4j', version: '0.5.2'
+
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.jackson}"
+
+    compile 'io.swagger:swagger-annotations:1.5.10'
+
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+
+}
