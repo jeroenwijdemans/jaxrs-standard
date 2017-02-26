@@ -31,6 +31,7 @@ public class Config {
     }
 
     public static String getPropertiesLocation() {
+        System.getProperties().putAll(System.getenv());
         if (System.getProperty(ENV_PROPS_LOCATION) == null) {
             throw new RuntimeException(ENV_PROPS_LOCATION + " has not been set as environment variable. Please set.");
         }
