@@ -11,4 +11,19 @@ class ConfigTest extends spock.lang.Specification {
         Config.get("hello") == "world"
         Config.get("security.jwt.signedKey") == "mykey"
     }
+
+    def "when i read a non existing value using a default fallback i expect the fallback"() {
+        when:
+        def v = Config.get("not", "default")
+        then:
+        v == "default"
+    }
+
+    def "when i read a non existing value with no fallback i expect the an exception"() {
+        when:
+        Config.get("not-there")
+
+        then:
+        thrown(IllegalArgumentException.class)
+    }
 }

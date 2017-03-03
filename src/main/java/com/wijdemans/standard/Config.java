@@ -60,10 +60,17 @@ public class Config {
     }
 
     public static String get(String key) {
+        return Config.get(key, null);
+    }
+
+    public static String get(String key, String defaultValue) {
         if (props.containsKey(key)) {
             return props.getProperty(key);
         }
-        throw new IllegalStateException(String.format("Cannot find key [%s] in [%s]", key, Arrays.toString(props.keySet().toArray())));
+        if (defaultValue != null) {
+            return defaultValue;
+        }
+        throw new IllegalArgumentException(String.format("Cannot find key [%s] in [%s]", key, Arrays.toString(props.keySet().toArray())));
     }
 
     public static int getInt(String key) {
