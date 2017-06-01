@@ -15,8 +15,8 @@ apply plugin: "groovy"
 apply plugin: "maven"
 
 compileJava {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
     options.verbose = false
 }
 
@@ -43,7 +43,6 @@ ext {
 versions += [
         slf4j : "1.7.18",
         jackson  : "2.8.4",
-        jackson  : "2.8.4",
 ]
 
 libraries.logging = [
@@ -67,4 +66,103 @@ dependencies {
 
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
+}
+
+// --------------------------------------
+
+apply plugin: 'signing'
+apply plugin: "jacoco"
+
+task version {
+    doFirst {
+        println project.version
+    }
+}
+jacoco {
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+test { finalizedBy jacocoTestReport }
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: System.getenv("OSSRH_JIRA_USERNAME"), password: System.getenv("OSSRH_JIRA_PASSWORD"))
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: System.getenv("OSSRH_JIRA_USERNAME"), password: System.getenv("OSSRH_JIRA_PASSWORD"))
+            }
+
+            pom.project {
+                name project.name
+                packaging 'jar'
+                description project.description
+                url 'https://github.com/jeroenwijdemans/valueobjects.git'
+
+                scm {
+                    connection 'scm:https://github.com/jeroenwijdemans/valueobjects.git'
+                    developerConnection 'scm:git@github.com:jeroenwijdemans/valueobjects.git'
+                    url 'https://github.com/jeroenwijdemans/valueobjects.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'jeroenwijdemans'
+                        name 'Jeroen Wijdeans'
+                        email 'jeroenwijdemans@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.allTasks.any { it instanceof Sign }) {
+        def id = System.getenv("GPG_KEY_NAME")
+        def password = System.getenv("GPG_PASSPHRASE")
+        def ring = System.properties['user.home'] + "/.gnupg/secring.gpg"
+
+        allprojects { ext."signing.keyId" = id }
+        allprojects { ext."signing.password" = password }
+        allprojects { ext."signing.secretKeyRingFile" = ring }
+    }
 }

@@ -1,3 +1,9 @@
+_Work in progress_
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b8d189eeab34d9cba6ac4d5e7e38453)](https://www.codacy.com/app/jeroenwijdemans/jaxrs-standard?utm_source=github.com&utm_medium=referral&utm_content=jeroenwijdemans/jaxrs-standard&utm_campaign=badger) 
+[![Build Status](https://travis-ci.org/jeroenwijdemans/jaxrs-standard.svg?branch=master)](https://travis-ci.org/jeroenwijdemans/jaxrs-standard)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![codecov](https://codecov.io/gh/jeroenwijdemans/jaxrs-standard/branch/master/graph/badge.svg)](https://codecov.io/gh/jeroenwijdemans/jaxrs-standard)
 
 # JAXRS standard library
 
@@ -13,10 +19,10 @@ Add the following:
  
 #### Config
 
-Configuration is intended to read yaml, f.e. on Kubernetes
+Configuration is intended to read yaml, for example on Kubernetes
 
-#### Config
-Register domains in Config to easily check CORS without using *
+#### CORS Filter
+Register domains for this service from Config to easily check CORS without using *
 
 #### Health checks
 Quick check to see if the JAXRS is up

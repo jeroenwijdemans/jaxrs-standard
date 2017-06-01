@@ -1,0 +1,34 @@
+language: java
+env:
+  global:
+    # OSSRH_JIRA_USERNAME
+    # OSSRH_JIRA_PASSWORD
+    # GPG_KEY_NAME
+    # GPG_PASSPHRASE
+jdk:
+  - oraclejdk8
+before_script:
+  - chmod +x gradlew
+install: true
+script:
+  - ./gradlew test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+deploy:
+  - provider: script
+    script: ./cd/deploy.sh
+    on:
+      branch: master
+      tags: true
+  - provider: releases
+    api_key:
+      secure: "xxx"
+    file_glob: true
+    file:
+      - "build/libs/jaxrs-standard-${VERSION}.jar"
+      - "build/libs/jaxrs-standard-${VERSION}-javadoc.jar"
+      - "build/libs/jaxrs-standard-${VERSION}-sources.jar"
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: true
