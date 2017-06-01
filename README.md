@@ -7,7 +7,7 @@ _Work in progress_
 
 # JAXRS standard library
 
-provides opinionated standards for JAXRS project.
+provides opinionated utility classes for JAXRS project.
 
 Add the following: 
 
@@ -16,9 +16,9 @@ Add the following:
  - Healthcheck
  - Immediate Feature
  - Security Filter
+  
  
 #### Config
-
 Configuration is intended to read yaml, for example on Kubernetes
 
 #### CORS Filter
@@ -39,8 +39,6 @@ Simple check that:
   - reads a JWT token
   - Validates the token
  
-
-
 # Dependencies
 
 Expected the following on the classpath:
@@ -52,7 +50,10 @@ Expected the following on the classpath:
  - swagger annotation implementation
  - jackson implementation
  
-JAXRS 2.0 is the reference implementation that works.
+ JAXRS 2.0 is the reference implementation that works.
+
+ [Microservice template](https://github.com/jeroenwijdemans/microservice-template) 
+ is a reference implementation for, amongst others, this library.
  
 # Usage
 
@@ -98,8 +99,3 @@ class Main {
 }
 
 ```
-
-# REST calls
-
- - give example
- - link to example project
