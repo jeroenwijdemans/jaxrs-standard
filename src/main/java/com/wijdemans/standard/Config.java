@@ -13,6 +13,11 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Reads yaml files from some properties environment.
+ *
+ * Specifically to make it easier to work with ConfigMap on Kubernetnes.
+ */
 @Provider
 @Immediate
 public class Config {

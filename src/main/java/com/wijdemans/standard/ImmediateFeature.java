@@ -9,6 +9,11 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
 
+/**
+ * JAXRS feature that enables usage of @Immediate scope.
+ *
+ * Any service annotated with this scope will be initialized eagerly.
+ */
 public class ImmediateFeature implements Feature {
 
     private static final Logger logger = LoggerFactory.getLogger(ImmediateFeature.class);

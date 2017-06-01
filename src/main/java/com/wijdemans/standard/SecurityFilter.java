@@ -36,6 +36,11 @@ import java.util.regex.Pattern;
 // http://howtodoinjava.com/jersey/jersey-rest-security/
 // http://www.sixturtle.com/blog/2015/02/01/secure-api-with-jwt.html
 
+/**
+ * Filter to check if the Authorization token is valid.
+ *
+ * Uses the config to read runtime configuration.
+ */
 @Priority(Priorities.AUTHENTICATION)
 @Provider
 public class SecurityFilter implements ContainerRequestFilter {
@@ -93,10 +98,14 @@ public class SecurityFilter implements ContainerRequestFilter {
         if (method.isAnnotationPresent(RolesAllowed.class)) {
             RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
             Set<String> rolesSet = new HashSet<>(Arrays.asList(rolesAnnotation.value()));
-
             JwtClaims claims = parseClaims(s.get());
 
-            // then we expect it is ok :-)
+            // for now we assume it is ok
+
+            // TODO handle simple cases or add plugable feature
+            // Cases:
+            //  - is it too old
+            //  - is signed by some one we know
         }
     }
 

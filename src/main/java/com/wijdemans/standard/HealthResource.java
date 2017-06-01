@@ -25,4 +25,5 @@ public class HealthResource {
         return Response.ok().build();
     }
 
+    // TODO add feature / dependency that can do runtime health check
 }
