@@ -1,6 +1,6 @@
 _Work in progress_
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b8d189eeab34d9cba6ac4d5e7e38453)](https://www.codacy.com/app/jeroenwijdemans/jaxrs-standard?utm_source=github.com&utm_medium=referral&utm_content=jeroenwijdemans/jaxrs-standard&utm_campaign=badger) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5637f6ca681e4cf49b001f8e8d8de4b8)](https://www.codacy.com/app/jeroenwijdemans/jaxrs-standard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jeroenwijdemans/jaxrs-standard&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/jeroenwijdemans/jaxrs-standard.svg?branch=master)](https://travis-ci.org/jeroenwijdemans/jaxrs-standard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/jeroenwijdemans/jaxrs-standard/branch/master/graph/badge.svg)](https://codecov.io/gh/jeroenwijdemans/jaxrs-standard)
