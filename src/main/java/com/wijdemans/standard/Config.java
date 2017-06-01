@@ -1,3 +1,4 @@
+
 package com.wijdemans.standard;
 
 import org.glassfish.hk2.api.Immediate;
@@ -54,16 +55,6 @@ public class Config {
         }
     }
 
-    public static Properties getProperties(String file) {
-        Properties properties = new Properties();
-        try {
-            properties.load(getFileInputStream(file));
-        } catch (IOException e1) {
-            throw new IllegalStateException("Cannot load properties in props object. Are they in java props format.");
-        }
-        return properties;
-    }
-
     public static String get(String key) {
         return Config.get(key, null);
     }
@@ -76,6 +67,10 @@ public class Config {
             return defaultValue;
         }
         throw new IllegalArgumentException(String.format("Cannot find key [%s] in [%s]", key, Arrays.toString(props.keySet().toArray())));
+    }
+
+    public static int getInt(String key, int defaultValue) {
+        return Integer.valueOf(get(key, String.valueOf(defaultValue)));
     }
 
     public static int getInt(String key) {
