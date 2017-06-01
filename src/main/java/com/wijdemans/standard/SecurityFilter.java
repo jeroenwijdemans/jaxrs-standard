@@ -33,9 +33,6 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 
-// http://howtodoinjava.com/jersey/jersey-rest-security/
-// http://www.sixturtle.com/blog/2015/02/01/secure-api-with-jwt.html
-
 /**
  * Filter to check if the Authorization token is valid.
  *
