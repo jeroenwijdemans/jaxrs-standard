@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo 'deploy ... '
 if [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
-    openssl aes-256-cbc -K $encrypted_e3157f88fb5c_key -iv $encrypted_e3157f88fb5c_iv -in codesigning.asc.enc -out codesigning.asc -d
+    openssl aes-256-cbc -K $encrypted_e3157f88fb5c_key -iv $encrypted_e3157f88fb5c_iv -in ./cd/codesigning.asc.enc -out ./cd/codesigning.asc -d
     gpg --fast-import ./cd/codesigning.asc
     ./gradlew uploadArchives -s
     echo "Finished uploading archives"

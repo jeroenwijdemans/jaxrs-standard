@@ -5,3 +5,4 @@ classes/
 build/
 *.iws
 *.ipr
+cd/codesigning.asc
