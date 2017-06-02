@@ -16,7 +16,7 @@ before_script:
   - chmod +x gradlew
 install: true
 script:
-  - ./gradlew test
+  - ./gradlew clean test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 deploy:
@@ -27,13 +27,9 @@ deploy:
       tags: true
   - provider: releases
     api_key:
-      secure: "W1S04Sr7tQa5bfDalj8xJBe7abPDFaR+UarvEh+7EBg8TR8/PmTkpKC+x+piDM7YLu65b9idaYCnN3Zn/RxzAbHFEnsIt9YL1WCx73a6phF5+1f+vrqukQXgSwPGi3j7MK5D0/mQ/Jczleb9grH2JhD0UtMIbyJy6YRENB06/3OratL80HeYxe6+YXUPhz1MbwdyTUSVJ5AyIAYIwRXnJoWepZbOIa7lJak5Rfo3FpZfvs1yqosQUHzTjiOu9zOzC9lZNfOzDdzrRncevvdAqOIcD+3eZlsd/rgXEVuTY0Y/2YiptOauVTE5NoJanfdwGdQJpR3Fba5pTqllEEU6OQDdqRRohDL+Ts9cKGRa+y4mG8CHJzBJgAT2Xct8bzLuyjN868iYX+aFYjYInvZNazNh986BY/9Ny22yqJFPyfgi37tPXbrwrzwpzjy7QRVavX12ozXYv5wGzSX0sbGdmsxPEm9qVs071gcVV33F8b+hlbOo3/2ot93Yy5pZRDzF9f403lyE/Kz8O+LMDDFTzJOYH+ZMTpd3LhZKTONq5Oj0m+nEj+bYIxoNbTVsASDC6qU+6RTkVw3nUUEmdLaHwxkzuj1CjVEyogUu8z3MFtuA9pJbrkwBZhuv9RTQjjv4ApROvNs//OBk9Pz1y9ZQ3egpivG7UkaIzp2XWUJU+EQ="
+      secure: "n0EIx4ZJWRT6gBzF/gyfypCR2LipVOPBPXTcDm1elWq+KKbmJgK2CNuD+mEVIkYxVMPk5wO2aaMacuddMM0Hxa4Z50OJohGIvrDH6B4M073Amaw3gMu5gD2SRak/8jzYohclswlBzHUDYjGgaLFU9p4HX7iC3MzUMkz0fSu+lUlMZlHQPvTu082BxH8gNlJEYXsSRGLqTZg7yltxBkDY5zkdbiCkNYPJvzoZ2Es4TwwVEwU7GjQoC9eC346xRwzeiEHpr+WGLC74RgqVFo7AIo5ZMHARhtPte7n1LNgzJtksAgQqT2mDidjhTGVAhhshC0oquvFu0ycAfWiIiFRqJXlzN6QuwQcHrwJrwKYQSeVDCTZMrU2VvacJxCa04Qp+YvFT9jKles/VaJkLSDf5VX+/7/yGgMDOU8nPVp9nILc3IwUKTzbQyu8R0gKO0O1lKwyz820Kp2QsTq/4NXt+tqeWetvjVETprUYf+nW/j/5ihun1QdDKZmJOYWSZr0dj30oKV4+UZgXiJtqoUw1JdfUUKfLigBC0DJhCn9jB9I2gxnCfizYvf6Y6dEShg+ObaCwUAtfhC3WOTxFVQ04kOlvSz/NGgix1YYUEVOVGklQ/2KqhFVi4wHKldi71WgzMkB6B7DwevzQT0yJqnv3bw4UW5hPBxEAwN/zEr9wcMAo="
     file_glob: true
-    file:
-      - "build/libs/jaxrs-standard-${VERSION}.jar"
-      - "build/libs/jaxrs-standard-${VERSION}-javadoc.jar"
-      - "build/libs/jaxrs-standard-${VERSION}-sources.jar"
-    skip_cleanup: true
+    file: "build/libs/jaxrs-standard-*"
     on:
       branch: master
       tags: true
