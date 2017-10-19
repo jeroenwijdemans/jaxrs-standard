@@ -41,4 +41,8 @@ class ConfigTest extends spock.lang.Specification {
         then:
         thrown(IllegalArgumentException.class)
     }
+
+    def "when i read custom properties i expect to read that file from some base location"() {
+        readPropertiesFrom
+    }
 }

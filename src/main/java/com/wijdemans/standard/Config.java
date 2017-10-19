@@ -44,6 +44,16 @@ public class Config {
         return System.getProperty(ENV_PROPS_LOCATION);
     }
 
+    public static Properties readPropertiesFrom(String file) {
+        Properties properties = new Properties();
+        try {
+            properties.load(getFileInputStream(file));
+        } catch (IOException e1) {
+            throw new IllegalStateException("Cannot load properties in props object. Are they in java props format.");
+        }
+        return properties;
+    }
+
     public static InputStream getFileInputStream(String file) {
         String loc = getPropertiesLocation() + "/" + file;
         logger.debug("Reading properties from [{}]", loc);

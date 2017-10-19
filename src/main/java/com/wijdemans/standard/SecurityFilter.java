@@ -107,7 +107,6 @@ public class SecurityFilter implements ContainerRequestFilter {
     }
 
     private JwtClaims parseClaims(String token) {
-
         try {
             JwtConsumer jwtConsumer = new JwtConsumerBuilder()
                     .setRequireExpirationTime() // the JWT must have an expiration time
